@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dial Pad Input</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+         }
+.dial-pad-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    border: 1px solid black;
+}
+
+.input-container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.dial-input {
+    width: 200px;
+    padding: 5px;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.dial-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    grid-gap: 5px;
+    border: 1px solid black;
+    width: 200px;
+    margin-left: 100px;
+}
+
+.dial-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: blue;
+    border: none;
+    color: white;
+    font-weight: 700;
+    margin: 5px;
+}
+
+nav{
+    background-color: red;
+}
+nav h1{
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+label{
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Please enter Mobile Number</h1>
+    </nav>
+    <div class="dial-pad-container">
+        <div class="input-container">
+            <label for="inputBox1">MOBILE NO</label>
+            <input type="text" id="inputBox1" class="dial-input" readonly>
+        </div>
+
+        <div class="input-container">
+            <label for="inputBox2">BOOKING ID</label>
+            <input type="text" id="inputBox2" class="dial-input" readonly>
+        </div>
+
+        <div class="dial-pad">
+            <button class="dial-btn" onclick="appendToActiveInput('1')">1</button>
+            <button class="dial-btn" onclick="appendToActiveInput('2')">2</button>
+            <button class="dial-btn" onclick="appendToActiveInput('3')">3</button>
+            <button class="dial-btn" onclick="appendToActiveInput('4')">4</button>
+            <button class="dial-btn" onclick="appendToActiveInput('5')">5</button>
+            <button class="dial-btn" onclick="appendToActiveInput('6')">6</button>
+            <button class="dial-btn" onclick="appendToActiveInput('7')">7</button>
+            <button class="dial-btn" onclick="appendToActiveInput('8')">8</button>
+            <button class="dial-btn" onclick="appendToActiveInput('9')">9</button>
+            <button class="dial-btn" onclick="appendToActiveInput('0')">0</button>
+            <button class="dial-btn" onclick="clearActiveInput()">Clear</button>
+        </div>
+    </div>
+
+    <script>
+    let activeInput = null;
+
+        function appendToActiveInput(value) {
+            if (activeInput) {
+                activeInput.value += value;
+            }
+        }
+        
+        function clearActiveInput() {
+            if (activeInput) {
+                activeInput.value = '';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputBox1 = document.getElementById('inputBox1');
+            const inputBox2 = document.getElementById('inputBox2');
+        
+            inputBox1.addEventListener('focus', function () {
+                activeInput = inputBox1;
+            });
+        
+            inputBox2.addEventListener('focus', function () {
+                activeInput = inputBox2;
+            });
+        });
+        </script>
+</body>
+</html>
